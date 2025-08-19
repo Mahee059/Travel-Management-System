@@ -1,74 +1,83 @@
-import { useState } from "react"
+
+import { yupResolver } from "@hookform/resolvers/yup"
+import type { ILoginData } from "../../interface/auth.interface"
 import Button from "../common/button"
 import Input from "../common/inputs/input"
+import {useForm} from "react-hook-form"
+import * as yup from 'yup'
 
-const Loginform = () => {
+
+const loginSchema = yup.object({
+  email: yup.string().required(`email is required`).email(`ivalid email format`), 
+  password:yup.string().required(`password is requred`)
+}) 
 
 
-  const [formData, setFormData] = useState({ 
-    email: '', 
-    password:''
+
+const LoginForm = ()=> {
+
+  const { register, handleSubmit, formState:{errors}} = useForm({ 
+    defaultValues: { 
+      email:'',
+      password:''
+    },
+    resolver:yupResolver(loginSchema)
+
   }) 
-  
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => { 
-    console.log(`input changes`, e.target.name, e.target.value)
-    const name = e.target.name 
-    const value = e.target.value 
+      console.log(errors)
 
-    setFormData({ ...formData, [name]: value})
-  } 
-  
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => { 
-    e.preventDefault() 
-     console.log("form Submitted")
- }
- 
 
-  
- 
-  return (
-      <div>
-      <form onSubmit={onSubmit }> 
-              {/* Login form */}
-              <div className="mt-6 flex flex-col gap-4">
-                  
-                  <Input 
-                      label="Email"
-                      id="email"
-                      placeholder="{email@gmail.com}"
-                      type="text"
-                      key={'email_input'}
-            required={true} 
-            name = 'email'
-            onChange={onChange}
-                      
-                  />
-          
+    const onSubmit = (data: ILoginData) => {
+    
+        console.log("form submitted", data)
+    }
 
-                  <Input 
-                      label="Password"
-                      id="Password"
-                      placeholder="xxxxxxxxxxxxx"
-            type="password"
-            name = 'password'
-                     required = {true}
 
-                  />
-   
-            
-       
-        {/* button      */}
-        <div className="w-full mt-6">
-            <Button
-              label="Sign In" 
-              type ="submit"
-            />
-                  </div>
-                  </div>
-              
-          </form>
-</div>
-  )
+    return (
+        <div>
+            <form onSubmit={handleSubmit (onSubmit)}>
+                <div className="mt-6 flex flex-col gap-4">
+                    {/* email input */}
+                    <Input
+                        label="Email"
+                        id="email"
+                        placeholder={"example@gmail.com"}
+                        type="text"
+                        key={'email_input'}
+                        required ={true}
+                        name='email'
+              register={register} 
+              error={errors.email?.message}
+                    
+                    />
+
+                
+                    {/* password */}
+                    <Input
+                        label="Password"
+                        id="password"
+                        placeholder="xxxxxxxxxxxxx"
+                        type="password"
+                        required={true}
+                        name='password'
+              register={register}
+               error={errors.email?.message}
+
+                    />
+
+                    
+
+                    {/* button */}
+                    <div className="w-full mt-6">
+                       <Button 
+                        label="Sign In"
+                        type="submit"
+                       />
+                    </div>
+                </div>
+            </form>
+        </div>
+    )
 }
 
-export default Loginform
+export default LoginForm
