@@ -15,7 +15,7 @@ const Signup = () => {
         {/* link to sign up page */}
         <div className="mt-4">
           <p className="text-[14px] text-center"> 
-              <Link to={'/Login'}>
+              <Link to={'/login'}>
             Already have an account ?{" "}
             <span className="text-emerald-500">Sign In</span>
             </Link>

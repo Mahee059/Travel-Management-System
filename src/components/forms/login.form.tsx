@@ -5,14 +5,14 @@ import Button from "../common/button"
 import Input from "../common/inputs/input"
 import {useForm} from "react-hook-form"
 import * as yup from 'yup'
+import axios from "axios"
 
 
 const loginSchema = yup.object({
   email: yup.string().required(`email is required`).email(`ivalid email format`), 
   password:yup.string().required(`password is requred`)
 }) 
-
-
+ 
 
 const LoginForm = ()=> {
 
@@ -23,14 +23,36 @@ const LoginForm = ()=> {
     },
     resolver:yupResolver(loginSchema)
 
-  }) 
+  })  
+
+
+  //api function send http request
+  const login = async (data:ILoginData) => { 
+    try { 
+      const response = await axios.post('https://mern-travel-api-wc5l.onrender.com/api/auth/login', data )
+      return response.data
+      
+    } catch (error) { 
+      console.log(error)
+   }
+ }
+
+
+
       console.log(errors)
 
 
-    const onSubmit = (data: ILoginData) => {
+  const onSubmit =  async (data: ILoginData) => {
+    try {
+      console.log("form submitted", data)
+      const response = await login(data)
+      console.log('onsubmit resposne', response)
     
-        console.log("form submitted", data)
+    } catch (error) { 
+      console.log(error)
     }
+    } 
+    
 
 
     return (
