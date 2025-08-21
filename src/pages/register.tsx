@@ -1,4 +1,5 @@
 import RegisterForm from "../components/forms/register.form";
+import {Link}  from "react-router"
 
 const Signup = () => {
   return (
@@ -13,9 +14,11 @@ const Signup = () => {
 
         {/* link to sign up page */}
         <div className="mt-4">
-          <p className="text-[14px] text-center">
+          <p className="text-[14px] text-center"> 
+              <Link to={'/Login'}>
             Already have an account ?{" "}
             <span className="text-emerald-500">Sign In</span>
+            </Link>
           </p>
         </div>
       </div>
