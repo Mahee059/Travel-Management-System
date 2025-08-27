@@ -1,4 +1,5 @@
 
+import { Toaster } from 'react-hot-toast'
 import './App.css'
 import Login from './pages/login'
 import SignUp from './pages/register'
@@ -13,7 +14,12 @@ function  App () {
         <Routes>
           <Route path='/' element={<h1>Homepage</h1>} />
           <Route path='/login' element={<Login />} /> 
-          <Route path='/register' element={ <SignUp/>} />  
+          <Route path='/register' element={<SignUp />} />  
+          <Route path='*' element={<h1>Page not found</h1>} /> 
+          <Toaster
+            position="top-center"
+            reverseOrder={false}
+          />
           
         </Routes>
       </Router>

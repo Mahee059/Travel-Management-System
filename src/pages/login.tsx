@@ -9,8 +9,12 @@ const Login = () => {
           Login
         </h1>
 
-        {/* login form */}
-        <LoginForm/>
+        {/* login form */} 
+        
+            <LoginForm /> 
+      
+       
+  
 
         {/* link to sign up page */}
         <div className="mt-4">
