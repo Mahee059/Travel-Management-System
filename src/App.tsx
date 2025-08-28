@@ -1,8 +1,9 @@
 
 import { Toaster } from 'react-hot-toast'
 import './App.css'
-import Login from './pages/login'
+import Login from './pages/login';
 import SignUp from './pages/register'
+import LandingPage from './pages/landing'
 import {BrowserRouter as Router,Routes, Route} from 'react-router'
 function  App () {
 
@@ -12,18 +13,17 @@ function  App () {
       <Router> 
 
         <Routes>
-          <Route path='/' element={<h1>Homepage</h1>} />
+          <Route path='/' element={<LandingPage/>} />
           <Route path='/login' element={<Login />} /> 
           <Route path='/register' element={<SignUp />} />  
           <Route path='*' element={<h1>Page not found</h1>} /> 
-          <Toaster
-            position="top-center"
-            reverseOrder={false}
-          />
           
         </Routes>
       </Router>
-
+<Toaster
+            position="top-center"
+            reverseOrder={false}
+          />
 
 
     </main>
