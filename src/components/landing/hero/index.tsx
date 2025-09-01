@@ -1,30 +1,46 @@
-import hero from "../../../assets/hero.jpg";
+import heroImg from "../../../assets/hero.jpg";
 import Filter from "../home-filter";
 
 const Hero = () => {
   return (
-    <div className="w-full h-[89vh] relative">
-      {/* overlay */}
-      <div className="bg-black/60 absolute z-50  inset-0"></div>
+    <div className="w-full h-[85vh] sm:h-[90vh] relative">
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60 z-20"></div>
 
-      {/* image */}
-      <div className="h-full z-10">
-        <img src={hero} alt="Hero image" className="h-full w-full" />
-      </div> 
-
-       {/* CTA */}
-      <div className="absolute inset-0 flex justify-center items-center z-50">  
-         <div className="flex flex-col items-center map-2">
-        <h1 className="text-5xl text-[#f8f8f8] font-bold"> Discover Your Next Adventure</h1> 
-          <p className="text-white text-lg text-center mt-2" >Book flights, hotels, hours & more with ease</p> 
-          <div className="flex justify-center my-2"> 
-             <Filter/>
-          </div>  
-        <button className=" mt-4 text-lg font-bold text-white w-ft- mx-auto auto bg-emerald-700 py-3 px-8 rounded-md">Book Now</button>
-      </div> 
+      {/* Background Image */}
+      <div className="h-full w-full">
+        <img
+          src={heroImg}
+          alt="Hero"
+          className="h-full w-full object-cover object-center"
+        />
       </div>
-    </div> 
-  
+
+      {/* Content / CTA */}
+      <div className="absolute inset-0 flex justify-center items-center z-30 px-4 sm:px-6 md:px-10">
+        <div className="flex flex-col items-center max-w-4xl text-center">
+          {/* Heading */}
+          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-snug sm:leading-tight md:leading-tight">
+            Discover Your Next Adventure
+          </h1>
+
+          {/* Subtitle */}
+          <p className="mt-3 text-xs sm:text-sm md:text-lg lg:text-xl xl:text-2xl text-gray-200 max-w-2xl">
+            Book flights, hotels, tours & more with ease
+          </p>
+
+          {/* Filter Section */}
+          <div className="flex justify-center w-full mt-4 sm:mt-6 md:mt-8">
+            <Filter />
+          </div>
+
+          {/* CTA Button */}
+          <button className="mt-5 sm:mt-7 md:mt-9 text-xs sm:text-sm md:text-lg lg:text-xl font-semibold text-white bg-emerald-700 hover:bg-emerald-800 transition-colors duration-200 px-5 sm:px-7 md:px-9 py-2 sm:py-3 md:py-4 rounded-lg shadow-md w-fit">
+            Book Now
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 

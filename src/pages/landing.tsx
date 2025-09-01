@@ -1,7 +1,8 @@
 import NavBar from "../components/header"
 import Hero from "../components/landing/hero" 
-import Popular from "../components/landing/Popular" 
- import WhyChoooseUs from "../components/landing/why Choose Us"
+import Popular from "../components/landing/Popular-destinations" 
+import WhyChoooseUs from "../components/landing/why Choose Us"
+import Howitworks from "../components/landing/How it works"
 
  const LandingPage = () => {
   return (
@@ -10,6 +11,7 @@ import Popular from "../components/landing/Popular"
       <Hero /> 
       <Popular />
       <WhyChoooseUs />
+      <Howitworks />
       
           
       </main>
