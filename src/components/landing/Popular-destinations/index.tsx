@@ -4,8 +4,9 @@ import ComponentTitle from "../../common/component-title";
 import { get_popular } from "../../../api/package.api";
 import { useQuery } from "@tanstack/react-query";
 import LoadingPackageList from "../../common/loaders/loading-pacakge-list";
+import type { IPackage } from "../../package/tour package.interface";
 
-const PopilarDestinations = () => {
+const PopularDestinations = () => {
   //* get all destination
   const { data, isLoading } = useQuery({
     queryFn: get_popular,
@@ -14,7 +15,7 @@ const PopilarDestinations = () => {
 
   console.log(data, isLoading);
   return (
-    <div className="px-32 tracking-wider my-10">
+    <div className="px-2 2xl:px-32 tracking-wider my-10">
       {/* title-section */}
       <ComponentTitle
         title="Popular Destinations"
@@ -25,20 +26,15 @@ const PopilarDestinations = () => {
       {isLoading && <LoadingPackageList />}
 
       {/* card section */}
-      <div className="mt-10 grid grid-cols-5 gap-5">
-        <PackageCard />
-        <PackageCard />
-        <PackageCard />
-        <PackageCard />
-        <PackageCard />
-        <PackageCard />
-        <PackageCard />
-        <PackageCard />
-        <PackageCard />
-        <PackageCard />
-      </div>
+      {!isLoading && data?.data?.data.length > 0 && (
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cold-2 lg:grid-cols-3 2xl:grid-cols-5 gap-5">
+          {data?.data?.data?.map((tour_package: IPackage) => (
+            <PackageCard tour_package={tour_package} key={tour_package._id} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
 
-export default PopilarDestinations;
+export default PopularDestinations;
