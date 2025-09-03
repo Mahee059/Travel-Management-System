@@ -27,7 +27,7 @@ const PopularDestinations = () => {
 
       {/* card section */}
       {!isLoading && data?.data?.data.length > 0 && (
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cold-2 lg:grid-cols-3 2xl:grid-cols-5 gap-5">
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cold-2 lg:grid-cols-4 2xl:grid-cols-5 gap-5">
           {data?.data?.data?.map((tour_package: IPackage) => (
             <PackageCard tour_package={tour_package} key={tour_package._id} />
           ))}

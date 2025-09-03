@@ -15,7 +15,7 @@ function  App () {
         <Routes>
           <Route path='/' element={<LandingPage/>} />
           <Route path='/login' element={<Login />} /> 
-          <Route path='/register' element={<SignUp />} />  
+          <Route path='/sign-up' element={<SignUp />} />  
           <Route path='*' element={<h1>Page not found</h1>} /> 
           
         </Routes>

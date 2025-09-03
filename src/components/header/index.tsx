@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router"; 
 import { RiLoginCircleLine, RiMenu3Line, RiCloseLine } from "react-icons/ri";
 
 const NavBar = () => {
@@ -32,13 +32,19 @@ const NavBar = () => {
             </Link>
           </div>
 
-          {/* Auth Button (Desktop) */}
-          <div className="hidden md:flex">
+          {/* Auth Button (Desktop) */} 
+            
+            <div className="hidden md:flex"> 
+               <Link to='/login'> 
+              
             <button className="flex gap-2 items-center cursor-pointer px-5 py-2 border border-white rounded-md hover:bg-emerald-800 transition">
               <RiLoginCircleLine size={22} className="text-white" />
               <span className="font-bold text-white">Login</span>
-            </button>
-          </div>
+              </button>
+              </Link> 
+              
+            </div> 
+            
 
           {/* Mobile Hamburger */}
           <div className="md:hidden flex items-center">
@@ -85,13 +91,15 @@ const NavBar = () => {
           </Link>
 
           {/* Auth Button (Mobile) */}
-          <button
-            onClick={() => setIsOpen(false)}
+           
+          <Link to='/login'> 
+          <button    
             className="flex gap-2 items-center w-full justify-center mt-3 px-5 py-2 border border-white rounded-md hover:bg-emerald-800 transition"
           >
             <RiLoginCircleLine size={22} className="text-white" />
             <span className="font-bold text-white">Login</span>
-          </button>
+          </button> 
+          </Link>
         </div>
       )}
     </nav>
