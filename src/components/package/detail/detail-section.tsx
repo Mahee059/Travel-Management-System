@@ -11,6 +11,7 @@ const DetailSection: React.FC<IProps> = ({ tour_package }) => {
       <div>
         <h1 className="text-2xl font-bold text-gray-700 capitalize">
           {tour_package.title}
+          hello
         </h1>
       </div>
     </div>

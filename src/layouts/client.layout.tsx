@@ -10,7 +10,7 @@ const ClientLayout = () => {
       <NavBar />
 
       {/* dynamic part */}
-      <div className="flex-1 min-h-screen">
+      <div className="flex-1 min-h-screen mt-15">
         <Outlet />
       </div>
 

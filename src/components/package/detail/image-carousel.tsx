@@ -9,6 +9,8 @@ interface IProps {
 }
 
 const ImageCarousel: React.FC<IProps> = ({ images }) => {
+  console.log(images);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -21,13 +23,13 @@ const ImageCarousel: React.FC<IProps> = ({ images }) => {
     arrows: true,
   };
   return (
-    <div className="max-w-200">
+    <div className="w-full">
       <Slider {...settings}>
         {images?.map((image) => (
-          <div key={image.public_id} className="h-150  w-200 rounded-md shadow">
+          <div key={image.public_id} className="h-140  w-[200px] rounded-md shadow">
             <img
               src={image.path}
-              className="h-full w-full object-fill rounded-md"
+              className="h-full w-full object-cover rounded-md"
             />
           </div>
         ))}
