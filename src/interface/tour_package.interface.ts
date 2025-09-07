@@ -1,4 +1,4 @@
-import type { Package_Charge } from "../../interface/enum.types";
+import type { Package_Charge } from "./enum.types";
 
 export interface IResponse {
   _id: string;

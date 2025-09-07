@@ -1,12 +1,12 @@
 
+import { useQuery } from "@tanstack/react-query"
 import PackageCard from "../../package/card";
 import ComponentTitle from "../../common/component-title";
 import { get_popular } from "../../../api/package.api";
-import { useQuery } from "@tanstack/react-query";
 import LoadingPackageList from "../../common/loaders/loading-pacakge-list";
-import type { IPackage } from "../../package/tour package.interface";
+import type { IPackage } from "../../../interface/tour_package.interface";
 
-const PopularDestinations = () => {
+const PopilarDestinations = () => {
   //* get all destination
   const { data, isLoading } = useQuery({
     queryFn: get_popular,
@@ -27,7 +27,7 @@ const PopularDestinations = () => {
 
       {/* card section */}
       {!isLoading && data?.data?.data.length > 0 && (
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cold-2 lg:grid-cols-4 2xl:grid-cols-5 gap-5">
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cold-2 lg:grid-cols-3 2xl:grid-cols-5 gap-5">
           {data?.data?.data?.map((tour_package: IPackage) => (
             <PackageCard tour_package={tour_package} key={tour_package._id} />
           ))}
@@ -37,4 +37,4 @@ const PopularDestinations = () => {
   );
 };
 
-export default PopularDestinations;
+export default PopilarDestinations;

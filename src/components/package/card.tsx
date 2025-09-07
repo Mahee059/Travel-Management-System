@@ -3,8 +3,9 @@ import { CiCalendarDate } from "react-icons/ci";
 import { GoPeople } from "react-icons/go";
 import { TbCurrencyRupeeNepalese } from "react-icons/tb";
 
-import type { IPackage } from "./tour package.interface";
 import moment from "moment"
+import type { IPackage } from "../../interface/tour_package.interface";
+import { Link } from "react-router";
 // const tour_package = {
 //     title: "Kathmandu-Mustang",
 //     cover_image: {
@@ -24,6 +25,7 @@ interface IProps {
 
 const PackageCard: React.FC<IProps> = ({ tour_package }) => {
   return (
+    <Link to={`/package/${tour_package._id}?name=${tour_package.title}`}>
     <div className="w-[min(100% 300px)] flex flex-col gap-1 cursor-pointer shadow transition-all duration-400 hover:shadow-xl hover:translate-y-1 hover:scale-[1.04]">
       {/* image section */}
       <div className="w-full h-[200px] rounded ">
@@ -31,7 +33,7 @@ const PackageCard: React.FC<IProps> = ({ tour_package }) => {
           className="rounded h-full w-full object-fill"
           src={tour_package.cover_image.path}
           alt={tour_package.title}
-        />
+          />
       </div>
 
       {/* title */}
@@ -65,7 +67,7 @@ const PackageCard: React.FC<IProps> = ({ tour_package }) => {
           <TbCurrencyRupeeNepalese
             size={18}
             className="text-emerald-800 mr-2"
-          />
+            />
 
           <p>
             <span className="font-bold text-emerald-700">
@@ -85,6 +87,7 @@ const PackageCard: React.FC<IProps> = ({ tour_package }) => {
         </div>
       </div>
     </div>
+            </Link>
   );
 };
 

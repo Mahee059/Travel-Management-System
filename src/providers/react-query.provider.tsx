@@ -9,8 +9,6 @@ interface IProps {
 
 const query_client = new QueryClient()
 
-
-
 const ReactQueryProvider:React.FC<IProps> = ({children}) => {
   return (
    <QueryClientProvider client={query_client}>

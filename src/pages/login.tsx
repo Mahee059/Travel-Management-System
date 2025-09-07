@@ -12,7 +12,7 @@ const Login = () => {
         {/* login form */}
         <LoginForm />
 
-        {/* link to sign up page */}
+        {/* link to sign up page */} 
         <div className="mt-4">
           <p className="text-[14px] text-center">
             Don&apos;t have an account ?{" "}
