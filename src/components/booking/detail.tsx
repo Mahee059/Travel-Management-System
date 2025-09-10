@@ -1,12 +1,10 @@
 import React from "react";
-import type { IPackage } from "../../../interface/tour_package.interface";
 import { MdOutlineStarPurple500 } from "react-icons/md";
 import { LuCalendarCheck } from "react-icons/lu";
 import moment from "moment";
 import { GoPeople } from "react-icons/go";
 import { TbCurrencyRupeeNepalese } from "react-icons/tb";
-import Button from "../../common/inputs/button";
-
+import type { IPackage } from "../../interface/tour_package.interface";
 interface IProps {
   tour_package: IPackage;
 }
@@ -85,17 +83,10 @@ const DetailSection: React.FC<IProps> = ({ tour_package }) => {
         tempore.
       </div>
 
-      <div className="mt-10 w-full">
-        <p className="text-lg italic font-bold text-emerald-900">
-          Your Next Adventure Awaits You,
-        </p>
-      </div>
-      <div className="flex gap-4 mt-12 w-full">
-        <Button label="Book Now" />
-        <button className=" cursor-pointer w-full bg-white rounded-md border border-emerald-500 ">
-          Learn More
-        </button>
-      </div>
+      {/* <div className='mt-10 w-full'>
+        <p className='text-lg italic font-bold text-emerald-900'>Your Next Adventure Awaits You,</p>
+
+      </div> */}
     </div>
   );
 };
