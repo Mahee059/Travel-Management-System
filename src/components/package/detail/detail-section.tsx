@@ -5,8 +5,9 @@ import { LuCalendarCheck } from "react-icons/lu";
 import moment from "moment";
 import { GoPeople } from "react-icons/go";
 import { TbCurrencyRupeeNepalese } from "react-icons/tb";
-import Button from "../../common/inputs/button";
 
+import { Link } from "react-router";
+import Button from "../../common/inputs/button";
 interface IProps {
   tour_package: IPackage;
 }
@@ -91,7 +92,12 @@ const DetailSection: React.FC<IProps> = ({ tour_package }) => {
         </p>
       </div>
       <div className="flex gap-4 mt-12 w-full">
-        <Button label="Book Now" />
+        <Link
+          className="w-full"
+          to={`/book/${tour_package._id}?name=${tour_package.title}`}
+        >
+          <Button label="Book Now" />
+        </Link>
         <button className=" cursor-pointer w-full bg-white rounded-md border border-emerald-500 ">
           Learn More
         </button>

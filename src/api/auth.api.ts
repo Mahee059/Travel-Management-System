@@ -3,8 +3,6 @@ import type { ILoginData, IRegisterData } from "../interface/auth.interface"
 import api from '.'
  
 
-
-
 //api function send http request
   export const login = async (data:ILoginData) => { 
     try { 
