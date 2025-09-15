@@ -19,7 +19,7 @@ const LandingPage = () => {
       <Howitworks />
       <SpecialOfferBanner />
       <CTABanner />
-
+      
     </main>
   );
 };

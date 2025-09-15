@@ -5,7 +5,6 @@ import { LuCalendarCheck } from "react-icons/lu";
 import moment from "moment";
 import { GoPeople } from "react-icons/go";
 import { TbCurrencyRupeeNepalese } from "react-icons/tb";
-
 import { Link } from "react-router";
 import Button from "../../common/inputs/button";
 interface IProps {

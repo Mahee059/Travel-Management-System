@@ -7,7 +7,7 @@ const PackageCardShimmer = () => {
       <div className="p-2 flex flex-col gap-3">
         {/* title skeleton */}
         <div className="h-5 bg-gray-300 rounded w-3/4" />
-
+         
         {/* date skeleton */}
         <div className="flex items-center gap-2">
           <div className="h-4 w-4 bg-gray-300 rounded-full" />
