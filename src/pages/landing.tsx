@@ -1,5 +1,4 @@
 
-import NavBar from "../components/header";
 import CTABanner from "../components/landing/CTA Banner";
 import Hero from "../components/landing/hero";
 import Howitworks from "../components/landing/How it works";
@@ -12,7 +11,6 @@ import WhyChooseUs from "../components/landing/why Choose Us";
 const LandingPage = () => {
   return (
     <main className="w-full h-full">
-      <NavBar />
       <Hero />
       <PopularDestinations />
       <WhyChooseUs />

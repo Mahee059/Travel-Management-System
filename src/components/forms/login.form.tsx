@@ -5,13 +5,14 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { login } from "../../api/auth.api";
 import { useMutation } from "@tanstack/react-query";
-import toast from 'react-hot-toast'
+import toast from "react-hot-toast";
 import { loginSchema } from "../../schema/auth.schema";
-
-
+import { useNavigate } from "react-router";
+import { Role } from "../../interface/enum.types";
 
 const LoginForm = () => {
-  
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -25,32 +26,32 @@ const LoginForm = () => {
   });
 
   //* login mutation
-  const {mutate,isPending} = useMutation({
-    mutationFn:login,
-    mutationKey:['login'],
-    onSuccess:(response)=>{
-      console.log('on login success')
-      console.log(response)
-
-      toast.success(response.message ?? 'Login Success')
+  const { mutate, isPending } = useMutation({
+    mutationFn: login,
+    mutationKey: ["login"],
+    onSuccess: (response) => {
+      console.log(response);
+      toast.success(response.message ?? "Login Success");
+      console.log(response);
+      if (response?.data?.data?.role === Role.USER) {
+        navigate("/");
+      } else {
+        navigate("/admin");
+      }
     },
-    onError:(error) =>{
-      console.log('on login failed')
-      console.log(error)
+    onError: (error) => {
+      console.log("on login failed");
+      console.log(error);
 
-      toast.error(error.message ?? 'Login Failed')
-
-    }
-
-  })
-
+      toast.error(error.message ?? "Login Failed");
+    },
+  });
 
   const onSubmit = (data: ILoginData) => {
-    mutate(data)
+    mutate(data);
   };
 
   return (
-   
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mt-6 flex flex-col gap-4">
@@ -81,10 +82,11 @@ const LoginForm = () => {
 
           {/* button */}
           <div className="w-full mt-6">
-            <Button 
+            <Button
               disabled={isPending}
-              label={isPending ? "Signing In...." :"Sign In"} 
-              type="submit" />
+              label={isPending ? "Signing In...." : "Sign In"}
+              type="submit"
+            />
           </div>
         </div>
       </form>

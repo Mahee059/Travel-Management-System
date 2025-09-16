@@ -11,10 +11,6 @@ import BookPackage from "./pages/book"
 import AboutUs from './components/landing/About Us';
 
 
-
-
-
-
 function  App () {
 
   return (

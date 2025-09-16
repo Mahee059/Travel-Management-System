@@ -37,7 +37,7 @@ export const get_by_id = async (id:string) => {
 // book package
 export const book = async (data:{ tour_package:string, total_person:string, phone:string }) => {
   try {
-    const response = await api.post(`/tour_package`,data);
+    const response = await api.post(`/booking`, data);
     return response.data;
   } catch (error: any) {
     throw error.response.data;
