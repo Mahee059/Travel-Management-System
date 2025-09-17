@@ -1,3 +1,4 @@
+import type { Role } from "./enum.types";
 import type { IResponse } from "./tour_package.interface";
 
 export interface ILoginData {
@@ -19,6 +20,7 @@ export interface IUser extends IResponse {
   email: string;
   password: string;
   firstName: string;
+  role: Role;
   lastName: string;
   confirm_password: string;
   gender?: string;

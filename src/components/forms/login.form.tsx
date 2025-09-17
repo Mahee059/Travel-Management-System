@@ -7,11 +7,16 @@ import { login } from "../../api/auth.api";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { loginSchema } from "../../schema/auth.schema";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { Role } from "../../interface/enum.types";
+import useAuth from "../../hooks/useAuth";
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location);
+  const { setUser } = useAuth();
+  const from = location.state?.from;
 
   const {
     register,
@@ -30,11 +35,10 @@ const LoginForm = () => {
     mutationFn: login,
     mutationKey: ["login"],
     onSuccess: (response) => {
-      console.log(response);
       toast.success(response.message ?? "Login Success");
-      console.log(response);
+      setUser(response?.data?.data);
       if (response?.data?.data?.role === Role.USER) {
-        navigate("/");
+        navigate(from || "/");
       } else {
         navigate("/admin");
       }

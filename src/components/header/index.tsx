@@ -1,13 +1,27 @@
 import { Link } from "react-router";
 import { RiLoginCircleLine } from "react-icons/ri";
-import { useContext } from "react";
-import { Auth_Context } from "../../context/auth.context";
 import { BiLogOutCircle } from "react-icons/bi";
+import { useMutation } from "@tanstack/react-query";
+import { logout } from "../../api/auth.api";
+import toast from "react-hot-toast";
+import useAuth from "../../hooks/useAuth";
+
 const NavBar = () => {
-  const { user, isLoading } = useContext(Auth_Context);
+  const { user, setUser } = useAuth();
+  const { isPending, mutate } = useMutation({
+    mutationFn: logout,
+    onSuccess: (response) => {
+      toast.success(response.message ?? "Logged out");
+      setUser(null);
+    },
+    onError: (error) => {
+      toast.error(error.message ?? "Logged out");
+    },
+  });
 
-  console.log(user, isLoading);
-
+  const logoutUser = () => {
+    mutate();
+  };
   return (
     <nav className="tracking-wider h-16 px-36 w-full  flex justify-between items-center bg-emerald-800 text-white ">
       {/* logo */}
@@ -32,7 +46,9 @@ const NavBar = () => {
             </p>
             <div className="flex items-center gap-2 text-red-500 font-bold cursor-pointer">
               <BiLogOutCircle size={26} />
-              <p className="text-lg">Logout</p>
+              <p onClick={logoutUser} className="text-lg">
+                {isPending ? "Logging out" : "Logout"}
+              </p>
             </div>
           </div>
         ) : (

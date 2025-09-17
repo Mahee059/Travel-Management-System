@@ -1,4 +1,3 @@
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ILoginData, IRegisterData } from "../interface/auth.interface";
 import api from ".";
@@ -29,6 +28,16 @@ export const registerUser = async (data: IRegisterData) => {
 export const getProfile = async () => {
   try {
     const response = await api.get("/auth/me");
+    return response.data;
+  } catch (error: any) {
+    console.log(error);
+    throw error.response.data;
+  }
+};
+
+export const logout = async () => {
+  try {
+    const response = await api.post("/auth/logout");
     return response.data;
   } catch (error: any) {
     console.log(error);

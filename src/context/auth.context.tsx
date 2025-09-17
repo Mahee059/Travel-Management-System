@@ -1,7 +1,8 @@
-import { createContext, useEffect, useState } from "react";
+
 import type { IUser } from "../interface/auth.interface";
 import { useQuery } from "@tanstack/react-query";
 import { getProfile } from "../api/auth.api";
+import { createContext, useState } from "react";
 
 interface IAuthContext {
   user: IUser | null;
@@ -29,11 +30,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     queryKey: ["get_profile"],
     retry: false,
   });
-  useEffect(() => {
-    setUser(data?.data);
-  }, [data]);
+
   return (
-    <Auth_Context.Provider value={{ user, setUser, isLoading, refetch }}>
+    <Auth_Context.Provider
+      value={{ user: user || data?.data, setUser, isLoading, refetch }}
+    >
       {children}
     </Auth_Context.Provider>
   );

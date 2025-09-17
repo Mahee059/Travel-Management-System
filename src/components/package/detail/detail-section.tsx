@@ -5,13 +5,26 @@ import { LuCalendarCheck } from "react-icons/lu";
 import moment from "moment";
 import { GoPeople } from "react-icons/go";
 import { TbCurrencyRupeeNepalese } from "react-icons/tb";
-import { Link } from "react-router";
-import Button from "../../common/inputs/button";
+import Button from "../../common/button";
+import { useNavigate } from "react-router";
+import useAuth from "../../../hooks/useAuth";
+import toast from "react-hot-toast";
 interface IProps {
   tour_package: IPackage;
 }
 
 const DetailSection: React.FC<IProps> = ({ tour_package }) => {
+  const { isLoading, user } = useAuth();
+  const navigate = useNavigate();
+
+  const onBookClick = () => {
+    if (!isLoading && user) {
+      navigate(`/book/${tour_package._id}?name=${tour_package.title}`);
+    } else {
+      toast.error("You need to login to book a package");
+    }
+  };
+
   return (
     <div className="w-full tracking-wider flex flex-col gap-3">
       <div className="flex items-center justify-between">
@@ -91,12 +104,9 @@ const DetailSection: React.FC<IProps> = ({ tour_package }) => {
         </p>
       </div>
       <div className="flex gap-4 mt-12 w-full">
-        <Link
-          className="w-full"
-          to={`/book/${tour_package._id}?name=${tour_package.title}`}
-        >
-          <Button label="Book Now" />
-        </Link>
+        {/* <Link className='w-full' to={link}> */}
+        <Button onClick={onBookClick} label="Book Now" />
+        {/* </Link> */}
         <button className=" cursor-pointer w-full bg-white rounded-md border border-emerald-500 ">
           Learn More
         </button>

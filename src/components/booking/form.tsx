@@ -1,24 +1,29 @@
 import React from "react";
 import Input from "../common/inputs/input";
 import { useForm } from "react-hook-form";
+import Button from "../common/button";
 import type { IPackage } from "../../interface/tour_package.interface";
 import { Package_Charge } from "../../interface/enum.types";
-import { yupResolver } from "@hookform/resolvers/yup"
-import { useMutation } from "@tanstack/react-query";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { book } from "../../api/package.api";
-import Button from "../common/inputs/button";
 import booking_schema from "../../schema/booking.schema";
+import useAuth from "../../hooks/useAuth";
 
 interface IProps {
   tour_package: IPackage;
 }
 const BookingForm: React.FC<IProps> = ({ tour_package }) => {
+  const { user } = useAuth();
+  const queryClient = useQueryClient();
+
   const {
     handleSubmit,
     watch,
     register,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: {
       total_person: "",
@@ -32,6 +37,10 @@ const BookingForm: React.FC<IProps> = ({ tour_package }) => {
     mutationFn: book,
     onSuccess: (response) => {
       toast.success(response.message || "Packed Booked");
+      reset();
+      queryClient.invalidateQueries({
+        queryKey: ["get_package_by_id"],
+      });
     },
     onError: (error) => {
       toast.error(error.message || "Packed Booked");
@@ -64,7 +73,7 @@ const BookingForm: React.FC<IProps> = ({ tour_package }) => {
         </h3>
         <div>
           <p className="text-center text-gray-600 text-base">
-            johndoe@gmail.com (John Doe)
+            {user?.email} ({user?.firstName + " " + user?.lastName} )
           </p>
         </div>
       </div>

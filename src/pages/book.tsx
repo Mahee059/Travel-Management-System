@@ -1,5 +1,9 @@
+
+
 import { useSearchParams } from "react-router";
 import BookingSection from "../components/booking";
+import withAuth from "../components/hoc/with_auth.hoc";
+import { Role } from "../interface/enum.types";
 import ComponentTitle from "../components/common/component-title";
 
 const BookPackage = () => {
@@ -19,4 +23,6 @@ const BookPackage = () => {
   );
 };
 
-export default BookPackage;
+const Book = withAuth(BookPackage, [Role.USER]);
+
+export default Book;
