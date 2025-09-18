@@ -9,6 +9,12 @@ import PackgaeDetailPage from './pages/package.detail';
 import ClientLayout from "./layouts/client.layout";
 import BookPackage from "./pages/book"
 import AboutUs from './components/landing/About Us';
+import AdminLayout from './layouts/admin.layout';
+import Dashboard from './pages/admin/dashboard';
+import PackagePage from './pages/admin/package/package'
+import UsersPage from './pages/admin/users';
+import BookingPage from './pages/admin/booking';
+
 
 
 function  App () {
@@ -26,6 +32,14 @@ function  App () {
             <Route path="*" element={<h1>Page not found</h1>} />
           </Route>
           <Route path="/book/:id" element={<BookPackage />} />;
+          {/* admin routes  */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route path="/admin" element={<Dashboard />} />
+            <Route path="/admin/packages" element={<PackagePage />} />
+            <Route path="/admin/packages" element={<BookingPage />} />
+            <Route path="/admin/packages" element={<UsersPage />} />
+            <Route path="*" element={<h1>Page not found</h1>} />
+          </Route>
           <Route path="*" element={<h1>Page not found</h1>} />
         </Routes>
       </Router>
@@ -33,5 +47,4 @@ function  App () {
     </main>
   );
 }
-
 export default App
