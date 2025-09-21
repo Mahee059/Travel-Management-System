@@ -1,9 +1,23 @@
 
+import PageHeader from "../header/page-header";
+import PackageList from "./list";
 
- const PackagePage = () => {
+
+const PackagePage = () => {
   return (
-    <div>package</div>
-  )
-}
- 
-export default PackagePage
+    <main className="h-full w-full ">
+      <PageHeader
+        title="All Posted Packages"
+        button_text="Create Package"
+        link={"#"}
+      />
+
+      {/* list */}
+      <div className="">
+        <PackageList />
+      </div>
+    </main>
+  );
+};
+
+export default PackagePage;

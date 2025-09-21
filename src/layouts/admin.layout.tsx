@@ -1,7 +1,9 @@
 import { Outlet } from "react-router";
-
 import AdminHeader from "../pages/admin/header";
 import SideBar from "../pages/admin/sidebar";
+import withAuth from "../components/hoc/with_auth.hoc";
+import { admins } from "../interface/enum.types";
+
 
 const AdminLayout = () => {
   return (
@@ -25,4 +27,7 @@ const AdminLayout = () => {
   );
 };
 
-export default AdminLayout;
+const Layout = withAuth(AdminLayout, admins)  
+  export default Layout
+
+ 

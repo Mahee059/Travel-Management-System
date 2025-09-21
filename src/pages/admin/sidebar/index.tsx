@@ -1,3 +1,5 @@
+import SideBarLinks from "./sidebar-links";
+
 const SideBar = () => {
   return (
     <aside className="w-full h-full ">
@@ -6,6 +8,11 @@ const SideBar = () => {
         <p className=" text-4xl text-emerald-900 italic font-bold text-center">
           Travel
         </p>
+      </div>  
+      {/* sidebar links */} 
+
+      <div> 
+        <SideBarLinks/>
       </div>
     </aside>
   );

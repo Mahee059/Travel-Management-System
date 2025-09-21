@@ -43,4 +43,15 @@ export const book = async (data:{ tour_package:string, total_person:string, phon
     throw error.response.data;
   }
 };
+ 
 
+
+// delete package
+export const delete_package = async (id:string) => {
+  try {
+    const response = await api.delete(`/tour_package/${id}`);
+    return response.data;
+  } catch (error: any) {
+    throw error.response.data;
+  }
+};

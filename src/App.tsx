@@ -36,8 +36,8 @@ function  App () {
           <Route path="/admin" element={<AdminLayout />}>
             <Route path="/admin" element={<Dashboard />} />
             <Route path="/admin/packages" element={<PackagePage />} />
-            <Route path="/admin/packages" element={<BookingPage />} />
-            <Route path="/admin/packages" element={<UsersPage />} />
+            <Route path="/admin/bookings" element={<BookingPage />} />
+            <Route path="/admin/users" element={<UsersPage />} />
             <Route path="*" element={<h1>Page not found</h1>} />
           </Route>
           <Route path="*" element={<h1>Page not found</h1>} />
