@@ -9,7 +9,7 @@ const PackagePage = () => {
       <PageHeader
         title="All Posted Packages"
         button_text="Create Package"
-        link={"#"}
+        link={"/admin/packages/create"}
       />
 
       {/* list */}

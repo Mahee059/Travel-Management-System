@@ -22,9 +22,8 @@ const PackageList = () => {
   });
 
   const onDelete = (info: any) => {
-    console.log(info)
-   mutate(info?.row?.original?._id)
-  }; 
+    mutate(info?.row?.original?._id);
+  };
 
   const columnHelper = createColumnHelper();
   const columns = [

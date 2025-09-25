@@ -6,11 +6,11 @@ interface IProps {
   label: string;
   id: string;
   placeholder?: string;
-  type?: "text" | "number" | "password";
-  required?:boolean,
-  name:string;
-  register?:any;
-  error?:string
+  type?: "text" | "number" | "password" | "date";
+  required?: boolean;
+  name: string;
+  register?: any;
+  error?: string;
 }
 
 const Input: React.FC<IProps> = ({
@@ -21,28 +21,28 @@ const Input: React.FC<IProps> = ({
   required = false,
   name,
   register,
-  error
+  error,
 }) => {
-
- 
-
   return (
     <div className="flex flex-col gap-1">
       <div className="flex">
         <label htmlFor={id} className="text-lg font-normal  text-gray-900">
           {label}
         </label>
-       { required && <LuAsterisk className="text-red-400"/>}
+        {required && <LuAsterisk className="text-red-400" />}
       </div>
       <input
-      
-      {...register(name)}
-        className={`text-gray-900 placeholder:text-gray-400   px-2 py-3.5 rounded-md border ${error ? 'focus:outline-red-500 border-red-500' : 'focus:outline-emerald-400 border-emerald-200'}`}
+        {...register(name)}
+        className={`text-gray-900 placeholder:text-gray-400 bg-white   px-2 py-3.5 rounded-md border ${
+          error
+            ? "focus:outline-red-500 border-red-500"
+            : "focus:outline-emerald-400 border-emerald-200"
+        }`}
         placeholder={placeholder}
         id={id}
         type={type}
       />
-      <p className="h-1 text-xs text-red-500">{error ? error : ''}</p>
+      <p className="h-1 text-xs text-red-500">{error ? error : ""}</p>
     </div>
   );
 };

@@ -13,7 +13,7 @@ import AdminLayout from './layouts/admin.layout';
 import Dashboard from './pages/admin/dashboard';
 import PackagePage from './pages/admin/package/package'
 import UsersPage from './pages/admin/users';
-import BookingPage from './pages/admin/booking';
+import CreatePage from './pages/admin/package/create';
 
 
 
@@ -36,7 +36,8 @@ function  App () {
           <Route path="/admin" element={<AdminLayout />}>
             <Route path="/admin" element={<Dashboard />} />
             <Route path="/admin/packages" element={<PackagePage />} />
-            <Route path="/admin/bookings" element={<BookingPage />} />
+            <Route path="/admin/packages/create" element={<CreatePage />} />
+           
             <Route path="/admin/users" element={<UsersPage />} />
             <Route path="*" element={<h1>Page not found</h1>} />
           </Route>

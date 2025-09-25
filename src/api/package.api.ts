@@ -5,7 +5,7 @@ import api from ".";
 //* get all packages
 export const get_all_packages = async () => {
   try {
-    const response = await api.get("/tour_package");
+    const response = await api.get("/tour_package?limit=30");
     return response.data;
   } catch (error: any) {
     throw error.response.data;
@@ -16,7 +16,7 @@ export const get_all_packages = async () => {
 //* get popular destinations
 export const get_popular = async () => {
   try {
-    const response = await api.get("/tour_package");
+    const response = await api.get("/tour_package?limit=8");
     return response.data;
   } catch (error: any) {
     throw error.response.data;
@@ -43,13 +43,22 @@ export const book = async (data:{ tour_package:string, total_person:string, phon
     throw error.response.data;
   }
 };
- 
 
 
 // delete package
 export const delete_package = async (id:string) => {
   try {
     const response = await api.delete(`/tour_package/${id}`);
+    return response.data;
+  } catch (error: any) {
+    throw error.response.data;
+  }
+};
+
+
+export const post_package = async (data:any) => {
+  try {
+    const response = await api.post(`/tour_package/`,data);
     return response.data;
   } catch (error: any) {
     throw error.response.data;
