@@ -1,34 +1,45 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // import { yupResolver } from "@hookform/resolvers/yup";
-
+import Input from "../../common/inputs/input";
 import { useForm } from "react-hook-form";
+import PackageCostType from "../../common/select-inputs/cost-type.select";
+import Button from "../../common/button";
 
 import DestinationInput from "./destination_input";
 import { useMutation } from "@tanstack/react-query";
 import { post_package } from "../../../api/package.api";
 import toast from "react-hot-toast";
+import type {
+  IPackage,
+  IPackageData,
+} from "../../../interface/tour_package.interface";
+import type React from "react";
+import ImageInput from "../../common/inputs/image-inputs";
 
-import Input from "../../../components/common/inputs/input";
-import PackageCostType from "../../../components/common/select-inputs/cost-type.select";
-import Button from "../../../components/common/button";
-import ImageInput from "../../../components/common/inputs/image-inputs";
-import type { IPackageData } from "../../../interface/tour_package.interface";
+interface IProps {
+  data?: IPackage;
+}
 
-const CreatePackageform = () => {
+const CreatePackageform: React.FC<IProps> = ({ data: tour_package }) => {
   const {
     register,
     control,
     handleSubmit,
     formState: { errors },
     watch,
+    reset,
   } = useForm({
     defaultValues: {
-      title: "",
-      total_charge: "",
-      total_seats: "",
-      start_date: "",
-      end_date: "",
-      destinations: [{ location: "", time: new Date(Date.now()).getTime() }],
+      title: tour_package?.title || "",
+      total_charge: tour_package?.total_charge || "",
+      total_seats: tour_package?.total_seats || "",
+      start_date: tour_package
+        ? new Date(tour_package?.start_date).toLocaleString()
+        : new Date(),
+      end_date: tour_package?.end_date || new Date(Date.now()).getDate(),
+      destinations: tour_package?.destinations || [
+        { location: "", time: new Date(Date.now()).getTime() },
+      ],
     },
     // resolver: yupResolver(loginSchema),
   });
@@ -36,12 +47,24 @@ const CreatePackageform = () => {
   const { mutate } = useMutation({
     mutationFn: post_package,
     onSuccess: (response) => {
+      reset();
       toast.success(response.message || "package created");
     },
     onError: (error) => {
       toast.error(error.message || "operation failed");
     },
   });
+
+  //   const { mutate:update } = useMutation({
+  //     mutationFn: update_package,
+  //     onSuccess: (response) => {
+  //         reset()
+  //         toast.success(response.message || 'package created')
+  //     },
+  //     onError: (error) => {
+  //         toast.error(error.message || 'operation failed')
+  //     }
+  // })
 
   const onSubmit = (data: IPackageData) => {
     console.log(data);
@@ -73,10 +96,12 @@ const CreatePackageform = () => {
       });
     }
 
+    // if (tour_package) {
+    // //    update(formData)
+    // } else {
     mutate(formData);
+    //    }
   };
-
-  console.log(watch("destinations"));
 
   return (
     <div className="m-10 p-20 bg-gray-50 rounded-md">
@@ -159,7 +184,7 @@ const CreatePackageform = () => {
 
         <div className="flex justify-end mt-10">
           <div className="w-[200px]">
-            <Button label="Create" type="submit" />
+            <Button label={tour_package ? "Update" : "Create"} type="submit" />
           </div>
         </div>
       </form>

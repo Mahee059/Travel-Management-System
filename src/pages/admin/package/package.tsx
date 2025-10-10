@@ -1,7 +1,5 @@
-
-import PageHeader from "../header/page-header";
-import PackageList from "./list";
-
+import PageHeader from "../../../components/admin/header/page-header";
+import PackageList from "../../../components/admin/package/list";
 
 const PackagePage = () => {
   return (

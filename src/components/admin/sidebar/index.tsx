@@ -1,4 +1,4 @@
-import SideBarLinks from "./sidebar-links";
+import SidebarLinks from "./sidebar-links";
 
 const SideBar = () => {
   return (
@@ -8,11 +8,11 @@ const SideBar = () => {
         <p className=" text-4xl text-emerald-900 italic font-bold text-center">
           Travel
         </p>
-      </div>  
-      {/* sidebar links */} 
+      </div>
 
-      <div> 
-        <SideBarLinks/>
+      {/* sidebar links */}
+      <div>
+        <SidebarLinks />
       </div>
     </aside>
   );

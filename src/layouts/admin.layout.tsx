@@ -1,8 +1,8 @@
 import { Outlet } from "react-router";
 import withAuth from "../components/hoc/with_auth.hoc";
-import { admins } from "../interface/enum.types";
-import AdminHeader from "../pages/admin/header";
-import SideBar from "../pages/admin/sidebar";
+import { admins } from "../interface/enum.types"
+import AdminHeader from "../components/admin/header";
+import SideBar from "../components/admin/sidebar";
 
 const AdminLayout = () => {
   return (

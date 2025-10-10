@@ -4,19 +4,31 @@ import Table from "../table";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { delete_package, get_all_packages } from "../../../api/package.api";
 import toast, { LoaderIcon } from "react-hot-toast";
-import ActionButtons from "../../../components/common/action-button";
+import { TbCurrencyRupeeNepalese } from "react-icons/tb";
+import ActionButtons from "../action-button";
 
+type PackageType = {
+  _id: string;
+  title: string;
+  total_charge: number;
+  start_date: string;
+  end_date: string;
+  total_seats: number;
+  seats_available: number;
+  createdAt: string;
+  updatedAt: string;
+};
 
 const PackageList = () => {
-  const queryClinet = useQueryClient();
+  const queryClient = useQueryClient();
 
   const { isPending, mutate } = useMutation({
     mutationFn: delete_package,
     onSuccess: (response) => {
       toast.success(response.message);
-      queryClinet.invalidateQueries({ queryKey: ["get_all_packages"] });
+      queryClient.invalidateQueries({ queryKey: ["get_all_packages"] });
     },
-    onError: (error) => {
+    onError: (error: any) => {
       toast.error(error.message);
     },
   });
@@ -25,19 +37,22 @@ const PackageList = () => {
     mutate(info?.row?.original?._id);
   };
 
-  const columnHelper = createColumnHelper();
+  const columnHelper = createColumnHelper<PackageType>();
   const columns = [
     columnHelper.accessor("title", {
       header: () => <span>Package Name</span>,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("total_charge", {
-      id: "total_charge",
-      cell: (info) => <i>{info.getValue()}</i>,
-      header: () => <span>Price(NPR.)</span>,
+      header: () => <span>Price (NPR)</span>,
+      cell: (info) => (
+        <div className="flex items-center gap-1">
+          <TbCurrencyRupeeNepalese /> <i>{info.getValue()}</i>
+        </div>
+      ),
     }),
     columnHelper.accessor("start_date", {
-      id: "start_date",
+      header: () => <span>Start Date</span>,
       cell: (info) => (
         <i>
           {new Intl.DateTimeFormat("en-US", {
@@ -49,10 +64,9 @@ const PackageList = () => {
           }).format(new Date(info.getValue()))}
         </i>
       ),
-      header: () => <span>Start Date</span>,
     }),
     columnHelper.accessor("end_date", {
-      id: "end_date",
+      header: () => <span>End Date</span>,
       cell: (info) => (
         <i>
           {new Intl.DateTimeFormat("en-US", {
@@ -64,21 +78,17 @@ const PackageList = () => {
           }).format(new Date(info.getValue()))}
         </i>
       ),
-      header: () => <span>End Date</span>,
     }),
     columnHelper.accessor("total_seats", {
-      id: "total_seats",
-      cell: (info) => <i>{info.getValue()}</i>,
       header: () => <span>Total Seats</span>,
+      cell: (info) => <i>{info.getValue()}</i>,
     }),
     columnHelper.accessor("seats_available", {
-      id: "seats_available",
-      cell: (info) => <i>{info.getValue()}</i>,
       header: () => <span>Vacant Seats</span>,
+      cell: (info) => <i>{info.getValue()}</i>,
     }),
-
     columnHelper.accessor("createdAt", {
-      id: "createdAt",
+      header: () => <span>Created At</span>,
       cell: (info) => (
         <i>
           {new Intl.DateTimeFormat("en-US", {
@@ -90,10 +100,9 @@ const PackageList = () => {
           }).format(new Date(info.getValue()))}
         </i>
       ),
-      header: () => <span>Created At</span>,
     }),
     columnHelper.accessor("updatedAt", {
-      id: "updatedAt",
+      header: () => <span>Updated At</span>,
       cell: (info) => (
         <i>
           {new Intl.DateTimeFormat("en-US", {
@@ -105,19 +114,17 @@ const PackageList = () => {
           }).format(new Date(info.getValue()))}
         </i>
       ),
-      header: () => <span>Updated At</span>,
     }),
-    columnHelper.accessor("_", {
+    columnHelper.display({
       id: "actions",
+      header: () => <span>Actions</span>,
       cell: (info) => (
         <ActionButtons
-          onDlete={() => {
-            onDelete(info);
-          }}
+          edit_link={`/admin/packages/update/${info.row.original._id}`}
+          onDlete={() => onDelete(info)}
           info={info}
         />
       ),
-      header: () => <span>Actions</span>,
     }),
   ];
 

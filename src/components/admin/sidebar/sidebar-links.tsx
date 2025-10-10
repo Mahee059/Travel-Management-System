@@ -1,4 +1,5 @@
 import { MdOutlineTravelExplore } from "react-icons/md";
+import { TbLayoutDashboard } from "react-icons/tb";
 import { CiBookmarkCheck } from "react-icons/ci";
 import { PiUsersThreeBold } from "react-icons/pi";
 import { Link, useLocation } from "react-router";
@@ -6,29 +7,29 @@ const sidebar_links = [
   {
     label: "Dashboard",
     link: "/admin",
-    icon: <MdOutlineTravelExplore />,
+    icon: <TbLayoutDashboard size={24} />,
   },
   {
     label: "Tour Packages",
     link: "/admin/packages",
-    icon: <MdOutlineTravelExplore />,
+    icon: <MdOutlineTravelExplore size={24} />,
   },
   {
     label: "Bookings",
     link: "/admin/bookings",
-    icon: <CiBookmarkCheck />,
+    icon: <CiBookmarkCheck size={26} />,
   },
 
   {
     label: "Users",
     link: "/admin/users",
-    icon: <PiUsersThreeBold />,
+    icon: <PiUsersThreeBold size={24} />,
   },
 
   {
     label: "Cateory",
     link: "/admin/category",
-    icon: <MdOutlineTravelExplore />,
+    icon: <MdOutlineTravelExplore size={24} />,
   },
 ];
 

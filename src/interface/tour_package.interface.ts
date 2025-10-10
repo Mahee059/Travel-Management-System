@@ -22,6 +22,8 @@ export interface IPackage extends IResponse {
   total_seats: number;
   total_charge: number;
   cost_type: Package_Charge;
+  destinations:any[]
+
 }
 
 

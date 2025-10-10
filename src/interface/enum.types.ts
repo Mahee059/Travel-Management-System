@@ -1,4 +1,5 @@
 
+
 export enum Gender {
     MALE = 'MALE',
     FEMALE = 'FEMALE',
@@ -11,9 +12,8 @@ export enum Role {
     SUPER_ADMIN = 'SUPER ADMIN',
     ADMIN = 'ADMIN'
 }
- 
 
-export const admins = [Role.ADMIN, Role.SUPER_ADMIN]
+export const admins = [Role.ADMIN, Role.SUPER_ADMIN];
 
 export enum Package_Charge {
     PER_DAY = 'PER_DAY',

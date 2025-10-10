@@ -1,19 +1,19 @@
+import { useParams } from "react-router";
+import UpdatePackage from "../../../components/admin/package/update-package";
 import PageHeader from "../../../components/admin/header/page-header";
-import CreatePackage from "../../../components/admin/package/create-package";
 
+const UpdatePage = () => {
+  const { id } = useParams();
 
-
-
-const CreatePage = () => {
   return (
     <main className="h-full w-full">
       <PageHeader title="Add New Packages" />
       {/* form */}
       <div className="h-full w-full">
-        <CreatePackage />
+        <UpdatePackage id={id ?? ""} />
       </div>
     </main>
   );
 };
 
-export default CreatePage;
+export default UpdatePage;
