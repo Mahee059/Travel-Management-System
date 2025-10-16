@@ -10,11 +10,10 @@ import BookPackage from "./pages/book"
 import AboutUs from './components/landing/About Us';
 import AdminLayout from './layouts/admin.layout';
 import Dashboard from './pages/admin/dashboard';
-import PackagePage from './pages/admin/package/package'
 import UsersPage from './pages/admin/users';
-import CreatePackage from './pages/admin/package/create';
-import UpdatePage from './pages/admin/package/update';
 import BookingPage from './pages/admin/booking';
+import CreatePackage from './components/admin/package/create-package';
+import Update from './pages/admin/update';
 
 
 
@@ -36,10 +35,10 @@ function  App () {
           {/* admin routes  */}
           <Route path="/admin" element={<AdminLayout />}>
             <Route path="/admin" element={<Dashboard />} />
-            <Route path="/admin/packages" element={<PackagePage />} />
+            <Route path="/admin/packages" element={<PackgaeDetailPage />} />
             <Route path="/admin/packages/create" element={<CreatePackage />} />
             <Route path="/admin/bookings" element={<BookingPage />} />
-            <Route path="/admin/packages/update/:id" element={<UpdatePage />} />
+            <Route path="/admin/packages/update/:id" element={<Update />} />
             <Route path="/admin/users" element={<UsersPage />} />
             <Route path="*" element={<h1>Page not found</h1>} />
           </Route>
